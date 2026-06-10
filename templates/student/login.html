@@ -1,0 +1,29 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="container mt-5" style="max-width: 400px;">
+
+    <h3 class="mb-3">Login</h3>
+
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="text" name="username" class="form-control mb-2" placeholder="Username">
+
+        <input type="password" name="password" class="form-control mb-2" placeholder="Password">
+
+        <button type="submit" class="btn btn-primary w-100">
+            Login
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

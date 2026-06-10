@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h2 class="mb-4">Mark Attendance</h2>
+
+    <!-- FILTER FORM -->
+    <form method="GET">
+
+        <div class="row">
+
+            <!-- YEAR -->
+            <div class="col-md-3">
+                <label class="form-label">Year</label>
+                <select name="year" class="form-select">
+                    <option value="">Select Year</option>
+                    <option value="1" {% if selected_year == "1" %}selected{% endif %}>1st Year</option>
+                    <option value="2" {% if selected_year == "2" %}selected{% endif %}>2nd Year</option>
+                    <option value="3" {% if selected_year == "3" %}selected{% endif %}>3rd Year</option>
+                    <option value="4" {% if selected_year == "4" %}selected{% endif %}>4th Year</option>
+                </select>
+            </div>
+
+            <!-- BRANCH -->
+            <div class="col-md-3">
+                <label class="form-label">Branch</label>
+                <select name="branch" class="form-select">
+                    <option value="">Select Branch</option>
+                    <option value="CSE" {% if selected_branch == "CSE" %}selected{% endif %}>CSE</option>
+                    <option value="CSM" {% if selected_branch == "CSM" %}selected{% endif %}>CSM</option>
+                    <option value="CSD" {% if selected_branch == "CSD" %}selected{% endif %}>CSD</option>
+                    <option value="IT" {% if selected_branch == "IT" %}selected{% endif %}>IT</option>
+                    <option value="ECE" {% if selected_branch == "ECE" %}selected{% endif %}>ECE</option>
+                    <option value="EEE" {% if selected_branch == "EEE" %}selected{% endif %}>EEE</option>
+                    <option value="MECH" {% if selected_branch == "MECH" %}selected{% endif %}>MECH</option>
+                    <option value="CIVIL" {% if selected_branch == "CIVIL" %}selected{% endif %}>CIVIL</option>
+                </select>
+            </div>
+
+            <!-- DATE -->
+            <div class="col-md-3">
+                <label class="form-label">Date</label>
+                <input type="date"
+                       name="date"
+                       class="form-control"
+                       value="{{ selected_date }}">
+            </div>
+
+            <!-- BUTTON -->
+            <div class="col-md-3 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary w-100">
+                    Load Students
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+
+    <!-- MESSAGE IF NO FILTER -->
+    {% if not filter_applied %}
+        <div class="alert alert-info mt-4">
+            Please select Year, Branch and Date to load students
+        </div>
+    {% endif %}
+
+    <!-- NO STUDENTS FOUND -->
+    {% if filter_applied and students|length == 0 %}
+        <div class="alert alert-warning mt-4">
+            No students found for selected filters
+        </div>
+    {% endif %}
+
+    <!-- ATTENDANCE FORM -->
+    {% if students|length > 0 %}
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <input type="hidden" name="date" value="{{ selected_date|default:'' }}">
+
+        <div class="mt-5">
+
+            <h4>Students List</h4>
+
+            <table class="table table-bordered mt-3">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Roll No</th>
+                        <th>Attendance</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    {% for student in students %}
+                    <tr>
+
+                        <td>{{ student.student_name }}</td>
+
+                        <td>{{ student.roll_no }}</td>
+
+                        <td>
+
+                            <label>
+                                <input type="radio"
+                                    name="attendance_{{ student.id }}"
+                                    value="Present"
+                                    required>
+                                Present
+                            </label>
+
+                            <label class="ms-3">
+                                <input type="radio"
+                                    name="attendance_{{ student.id }}"
+                                    value="Absent">
+                                Absent
+                            </label>
+
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+            <button type="submit" class="btn btn-success">
+                Save Attendance
+            </button>
+
+        </div>
+
+    </form>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

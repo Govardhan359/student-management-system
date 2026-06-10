@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<!-- Welcome Banner -->
+<div class="p-4 mb-4 bg-dark text-white rounded shadow">
+    <h2>🎓 Welcome to  ENGINEERING </h2>
+    <p class="mb-0">
+        Here we can Manage Students, Attendance and Academic Records Efficiently.
+    </p>
+</div>
+
+<!-- Quick Actions -->
+<div class="mb-4 text-center">
+
+    <a href="{% url 'addStudent' %}"
+       class="btn btn-success me-2">
+        ➕ Add Student
+    </a>
+
+    <a href="{% url 'addAttendance' %}"
+       class="btn btn-primary me-2">
+        📅 Mark Attendance
+    </a>
+
+    <a href="{% url 'studentList' %}"
+       class="btn btn-warning">
+        👨‍🎓 View Students
+    </a>
+
+</div>
+
+<h2 class="text-center mb-4">
+    Student Management System Dashboard
+</h2>
+
+<!-- Row 1 -->
+<div class="row mb-4">
+
+    <div class="col">
+        <div class="card bg-dark text-white text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>🎓 Total Students</h6>
+                <h2>{{ total_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card bg-primary text-white text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>📘 1st Year</h6>
+                <h2>{{ first_year_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card bg-success text-white text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>📗 2nd Year</h6>
+                <h2>{{ second_year_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card bg-warning text-dark text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>📙 3rd Year</h6>
+                <h2>{{ third_year_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col">
+        <div class="card bg-danger text-white text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>📕 4th Year</h6>
+                <h2>{{ final_year_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Row 2 -->
+<div class="row mb-4">
+
+    <div class="col-md-3">
+        <div class="card bg-info text-white text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>💻 CSE</h6>
+                <h2>{{ cse_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-success text-white text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>🖥️ CSM</h6>
+                <h2>{{ csm_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-primary text-white text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>📱 CSD</h6>
+                <h2>{{ csd_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-warning text-dark text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>🌐 IT</h6>
+                <h2>{{ it_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Row 3 -->
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card bg-danger text-white text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>📡 ECE</h6>
+                <h2>{{ ece_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-secondary text-white text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>⚡ EEE</h6>
+                <h2>{{ eee_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-dark text-white text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>⚙️ MECH</h6>
+                <h2>{{ mech_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card bg-info text-white text-center shadow dashboard-card">
+            <div class="card-body">
+                <h6>🏗️ CIVIL</h6>
+                <h2>{{ civil_students }}</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+```
+
+</div>
+
+{% endblock %}

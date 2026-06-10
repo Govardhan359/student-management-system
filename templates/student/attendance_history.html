@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <h3>Attendance History</h3>
+
+    <h5 class="mb-4">
+        {{ student.student_name }} ({{ student.roll_no }})
+    </h5>
+
+    {% if attendance_records|length == 0 %}
+
+        <div class="alert alert-warning">
+            No attendance records found
+        </div>
+
+    {% else %}
+        
+        <div class="row mb-4">
+
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5>Total Classes</h5>
+                        <h3>{{ total_classes }}</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5>Present Days</h5>
+                        <h3>{{ present_days }}</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5>Absent Days</h5>
+                        <h3>{{ absent_days }}</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5>Attendance %</h5>
+                        <h3>{{ attendance_percentage }}%</h3>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <table class="table table-bordered">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for record in attendance_records %}
+                <tr>
+                    <td>{{ record.date }}</td>
+                    <td>
+                        {% if record.status == "Present" %}
+                            <span class="badge bg-success">Present</span>
+                        {% else %}
+                            <span class="badge bg-danger">Absent</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    {% endif %}
+
+    {% if next_url %}
+        <a href="{{ next_url }}" class="btn btn-outline-primary mb-3">
+            ⬅ Back
+        </a>
+    {% else %}
+        <a href="{% url 'studentList' %}" class="btn btn-outline-primary mb-3">
+            ⬅ Back
+        </a>
+    {% endif %}
+
+</div>
+
+{% endblock %}

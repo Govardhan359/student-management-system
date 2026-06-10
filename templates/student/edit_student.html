@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content%}
+
+<div class="container mt-5">
+
+    <h3>Edit Student</h3>
+
+    <form method="POST" action="{% url 'updateStudent' student.id %}">
+        {% csrf_token %}
+
+        <input type="text" name="student_name" value="{{ student.student_name }}" class="form-control mb-2">
+
+        <input type="text" name="roll_no" value="{{ student.roll_no }}" class="form-control mb-2">
+
+        <input type="text" name="branch" value="{{ student.branch }}" class="form-control mb-2">
+
+        <input type="number" name="year" value="{{ student.year }}" class="form-control mb-2">
+
+        <input type="email" name="email" value="{{ student.email }}" class="form-control mb-2">
+
+        <input type="text" name="phone" value="{{ student.phone }}" class="form-control mb-2">
+
+        <button type="submit" class="btn btn-success">
+            Update Student
+        </button>
+        <a href="{% url 'studentList' %}" class="btn btn-secondary ms-2">
+            Cancel
+        </a>
+
+    </form>
+
+</div>
+
+{% endblock %}

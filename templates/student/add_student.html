@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+        
+        <div class="card-header bg-dark text-white">
+            <h3>Add Student Details</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Student Name</label>
+                    <input type="text" name="student_name" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Roll Number</label>
+                    <input type="text" name="roll_no" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Branch</label>
+                    <input type="text" name="branch" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Year</label>
+                    <select name="year" class="form-control" required>
+
+                        <option value="">Select Year</option>
+
+                        <option value="1">1st Year</option>
+                        <option value="2">2nd Year</option>
+                        <option value="3">3rd Year</option>
+                        <option value="4">4th Year</option>
+
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Phone</label>
+                    <input type="tel" name="phone" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    Save Student Details
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
