@@ -107,6 +107,24 @@ During the development of this project, the following concepts were implemented 
 
 ---
 
+## Screenshots
+
+### Dashboard
+
+![Dashboard](dashboard.png)
+
+### Student List
+
+![Student List](student_list.png)
+
+### Attendance Module
+
+![Attendance](attendance.png)
+
+### Attendance History
+
+![Attendance History](attendance_history.png)
+
 ## Author
 
 **Govardhan Tumarada**
